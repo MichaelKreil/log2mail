@@ -15,9 +15,9 @@ miss.toString(process.stdin, function (err, text) {
 	text = text.join('<br>\n');
 
 	text = [
-		'From: '+(argv.from || '"Raspberry Scraper" <bot@michael-kreil.de>'),
-		'To: '+(argv.to || '"Logging" <log@michael-kreil.de>'),
-		'Subject: '+(argv.subject || 'new scraper results'),
+		'From: '+argv.from,
+		'To: '+argv.to,
+		'Subject: '+argv.subject,
 		'',
 		'<!DOCTYPE html>',
 		'<html style="margin: 0; padding: 0;">',
