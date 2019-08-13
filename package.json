@@ -1,0 +1,16 @@
+{
+  "name": "log2mail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Kreil",
+  "license": "MIT",
+  "dependencies": {
+    "ansi-to-html": "^0.6.11",
+    "minimist": "^1.2.0",
+    "mississippi2": "^1.0.5"
+  }
+}

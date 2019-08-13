@@ -1,0 +1,34 @@
+"use strict"
+
+const miss = require('mississippi2');
+const argv = require('minimist')(process.argv.slice(2));
+
+miss.toString(process.stdin, function (err, text) {
+	text = text.split('\n');
+	text = text.map(l => {
+		if (!l) return '';
+		if (l.startsWith('# '))   return '<h1>'+l.substr(2)+'</h1>';
+		if (l.startsWith('## '))  return '<h2>'+l.substr(3)+'</h2>';
+		if (l.startsWith('### ')) return '<h3>'+l.substr(4)+'</h3>';
+		return '<small>'+l+'</small>';
+	})
+	text = text.join('<br>\n');
+
+	text = [
+		'From: '+(argv.from || '"Raspberry Scraper" <bot@michael-kreil.de>'),
+		'To: '+(argv.to || '"Logging" <log@michael-kreil.de>'),
+		'Subject: '+(argv.subject || 'new scraper results'),
+		'',
+		'<!DOCTYPE html>',
+		'<html style="margin: 0; padding: 0;">',
+		'<style>',
+			'small {color:#aaa;font-size:9px}',
+		'</style>',
+		'<body style="margin: 0; padding: 0;">',
+		text,
+		'</body>',
+		'</html>'
+	].join('\n');
+
+	miss.fromValue(text).pipe(process.stdout);
+})
