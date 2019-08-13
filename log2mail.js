@@ -27,7 +27,9 @@ miss.toString(process.stdin, function (err, text) {
 		'<body style="margin: 0; padding: 0;">',
 		text,
 		'</body>',
-		'</html>'
+		'</html>',
+		'',
+		''
 	].join('\n');
 
 	miss.fromValue(text).pipe(process.stdout);
