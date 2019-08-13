@@ -2,15 +2,17 @@
 
 const miss = require('mississippi2');
 const argv = require('minimist')(process.argv.slice(2));
+const Convert = require('ansi-to-html');
+const toHtml = (new Convert()).toHtml;
 
 miss.toString(process.stdin, function (err, text) {
 	text = text.split('\n');
 	text = text.map(l => {
 		if (!l) return '';
-		if (l.startsWith('# '))   return '<h1>'+l.substr(2)+'</h1>';
-		if (l.startsWith('## '))  return '<h2>'+l.substr(3)+'</h2>';
-		if (l.startsWith('### ')) return '<h3>'+l.substr(4)+'</h3>';
-		return '<small>'+l+'</small>';
+		if (l.startsWith('# '))   return '<h1>'+toHtml(l.substr(2))+'</h1>';
+		if (l.startsWith('## '))  return '<h2>'+toHtml(l.substr(3))+'</h2>';
+		if (l.startsWith('### ')) return '<h3>'+toHtml(l.substr(4))+'</h3>';
+		return '<small>'+toHtml(l)+'</small>';
 	})
 	text = text.join('<br>\n');
 
